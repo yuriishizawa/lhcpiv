@@ -1,0 +1,2 @@
+python3 src/lhcpiv/pipelines/convert_movies.py --path 'src/lhcpiv/pipelines/data/' --frames '10'
+python3 src/lhcpiv/pipelines/resize.py --path 'src/lhcpiv/pipelines/data/' --coords '[811, 716, 1991, 3047]'
