@@ -1,0 +1,35 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Python application
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.11
+    - name: Instala o poetry
+      uses: Gr1N/setup-poetry@v8
+      with:
+        poetry-version: "1.5.1"
+    - name: Install dependencies
+      run: |
+        poetry install
+    - name: Lint
+      run: |
+        poetry run pylint --disable=R,C */*.py --ignore-paths=video2calibration/,pipelines/
+    - name: Test with Pytest
+      run: |
+        poetry run pytest -vv lhcpiv/DLT_2D.py
