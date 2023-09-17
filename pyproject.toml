@@ -14,11 +14,10 @@ opencv-python = "^4.8.0.76"
 openpiv = "0.23.6"
 pandas = "^2.0.3"
 matplotlib = "^3.7.2"
-seaborn = "^0.12.2"
-
 
 [tool.poetry.group.dev.dependencies]
 ipykernel = "^6.25.1"
+seaborn = "^0.12.2"
 pytest = "^7.4.0"
 black = "^23.7.0"
 pylint = "^2.17.5"
