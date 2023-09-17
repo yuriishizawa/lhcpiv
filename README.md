@@ -1,3 +1,8 @@
-[![Python application](https://github.com/yuriishizawa/lhcpiv_private/actions/workflows/main.yml/badge.svg)](https://github.com/yuriishizawa/lhcpiv_private/actions/workflows/main.yml)
+[![Python application](https://github.com/yuriishizawa/lhcpiv/actions/workflows/main.yml/badge.svg)](https://github.com/yuriishizawa/lhcpiv/actions/workflows/main.yml)
 
-# lhcpiv
+# LHCPIV
+
+# Install dependencies
+We strongly recommend to use [Poetry](https://python-poetry.org):
+
+    poetry install
