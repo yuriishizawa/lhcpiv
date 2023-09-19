@@ -16,7 +16,7 @@ pandas = "^2.1.0"
 matplotlib = "^3.8.0"
 
 [tool.poetry.group.dev.dependencies]
-ipykernel = "^6.25.1"
+ipykernel = "^6.25.2"
 seaborn = "^0.12.2"
 pytest = "^7.4.2"
 black = "^23.9.1"
