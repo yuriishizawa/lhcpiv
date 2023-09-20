@@ -5,10 +5,9 @@ reinstall-poetry:
 	rm -rf poetry.lock
 	rm -rf .venv
 	rm -rf ~/.cache/pypoetry/cache
+	rm -rf ~/.cache/pypoetry/virtualenvs
 
-install_all: install install_lhcpiv
-
-reinstall_all: reinstall-poetry install_all
+reinstall_all: reinstall-poetry install
 
 test:
 	python3 -m pytest -vv src/lhcpiv/DLT_2D.py
