@@ -18,6 +18,6 @@ COPY . .
 
 RUN apt-get update
 RUN apt-get install htop ffmpeg libsm6 libxext6 libgl1-mesa-glx python3-opencv -y
-RUN make all
+RUN poetry install
 
 CMD ["jupyter", "lab", "--port", "8888", "--ip", "0.0.0.0", "--allow-root", "--no-browser"]
