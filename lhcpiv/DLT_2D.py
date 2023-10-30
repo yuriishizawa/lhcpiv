@@ -74,9 +74,12 @@ class DLT_2D:
         for i in range(n_p):
             x, y = xyzn[i, 0], xyzn[i, 1]
             u, v = uvn[i, 0], uvn[i, 1]
-            A.append([x, y, 1, 0, 0, 0, -u * x, -u * y, -u])
-            A.append([0, 0, 0, x, y, 1, -v * x, -v * y, -v])
-
+            A.extend(
+                (
+                    [x, y, 1, 0, 0, 0, -u * x, -u * y, -u],
+                    [0, 0, 0, x, y, 1, -v * x, -v * y, -v],
+                )
+            )
         # convert A to array
         A = np.asarray(A)
         # Find the 11 (or 8 for 2D DLT) parameters:
@@ -123,7 +126,7 @@ class DLT_2D:
         Hinv = np.linalg.inv(Ls.reshape(3, 3))
         # Point coordinates in space:
         xyz = np.dot(Hinv, [uvs[0], uvs[1], 1])
-        xyz = xyz[0:2] / xyz[2]
+        xyz = xyz[:2] / xyz[2]
 
         return xyz
 

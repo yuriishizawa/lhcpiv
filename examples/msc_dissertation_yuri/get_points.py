@@ -12,7 +12,7 @@ parsed = argparse.ArgumentParser()
 parsed.add_argument("--path", type=str)
 original_path = parsed.parse_args().path
 
-path = os.getcwd() + "/" + original_path
+path = f"{os.getcwd()}/{original_path}"
 
 # get first video
 path = os.path.join(path, os.listdir(path)[0].split(".")[0], f"frame{'5'.zfill(6)}.jpg")
@@ -43,7 +43,7 @@ def click_event(event, x, y, a, b):
         # displaying the coordinates
         # on the image window
         font = cv2.FONT_HERSHEY_SIMPLEX
-        cv2.putText(img, str(x) + "," + str(y), (x, y), font, 1, (255, 0, 0), 2)
+        cv2.putText(img, f"{str(x)},{str(y)}", (x, y), font, 1, (255, 0, 0), 2)
         cv2.imshow("image", img)
 
     # checking for right mouse clicks
@@ -60,7 +60,7 @@ def click_event(event, x, y, a, b):
         r = img[y, x, 2]
         cv2.putText(
             img,
-            str(b) + "," + str(g) + "," + str(r),
+            f"{str(b)},{str(g)},{str(r)}",
             (x, y),
             font,
             1,

@@ -33,7 +33,7 @@ def vf(path_to_video, qty_frames, x1=None, x2=None, y1=None, y2=None, rotate=Fal
 
         if ret and currentframe < qty_frames and currentframe > 3:
             # if video is still left continue creating images
-            name = "./" + folder_name + "/frame" + str(currentframe).zfill(6) + ".jpg"
+            name = f"./{folder_name}/frame{str(currentframe).zfill(6)}.jpg"
 
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
