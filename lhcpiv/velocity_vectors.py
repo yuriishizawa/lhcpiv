@@ -65,11 +65,11 @@ def calculate(
         image_size=frame_a.shape, search_area_size=searchsize, overlap=overlap
     )
 
-    u1, v1, mask = validation.sig2noise_val( # pylint: disable=W0632
+    u1, v1, mask = validation.sig2noise_val(  # pylint: disable=W0632
         u=u0, v=v0, s2n=sig2noise, threshold=threshold
     )
 
-    u2, v2 = filters.replace_outliers( # pylint: disable=W0632
+    u2, v2 = filters.replace_outliers(  # pylint: disable=W0632
         u1, v1, method="localmean", max_iter=10, kernel_size=2
     )
 
@@ -101,3 +101,7 @@ def calculate(
 
         if save_fig:
             fig.savefig(output_path.replace(".txt", ".png"))
+
+
+def test_rabbit():
+    print("Test rabbit")
