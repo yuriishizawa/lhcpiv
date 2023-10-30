@@ -89,7 +89,7 @@ class ComputeArea:
         for i, (depth, dist_left_bank) in enumerate(
             zip(self.df.depth, self.df.dist_left_bank)
         ):
-            if i == 0 or i == len(self.df.depth) - 1:
+            if i in [0, len(self.df.depth) - 1]:
                 wetted_perimeter.append(0)
             else:
                 dx = dist_left_bank - self.df.dist_left_bank[i - 1]

@@ -6,9 +6,7 @@ from . import video_to_frame
 
 
 def create_folder(path):
-    if os.path.exists(path):
-        pass
-    else:
+    if not os.path.exists(path):
         os.mkdir(path)
         print(f"Folder {path} doesn't exists... creating...")
 
@@ -33,11 +31,7 @@ def get_all_results(path, metric):
 
 
 def get_movies_list(path, video_format: str = "h264"):
-    movies = []
-    for i in os.listdir(path):
-        if i.endswith(video_format):
-            movies.append(i.split(".")[0])
-    return movies
+    return [i.split(".")[0] for i in os.listdir(path) if i.endswith(video_format)]
 
 
 def transform_all_videos_to_frames(
