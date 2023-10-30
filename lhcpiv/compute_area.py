@@ -1,87 +1,122 @@
+"""
+The `compute_area` module contains the `ComputeArea` class, which is used to
+calculate the cross-sectional area of hydraulic channels.
+
+The `ComputeArea` class contains the following methods:
+
+- `__init__(self, df)`: The constructor method takes a pandas DataFrame `df` as
+input and initializes the `df` attribute of the class.
+- `area(self)`: This method calculates the cross-sectional area of the hydraulic
+channel at each point in the DataFrame `df`. It returns a list of the calculated
+areas.
+- `pm(self)`: This method calculates the wetted perimeter of the hydraulic
+channel at each point in the DataFrame `df`. It returns a list of the calculated
+wetted perimeters.
+- `Rh(self)`: This method calculates the hydraulic radius of the channel by
+dividing the total cross-sectional area by the total wetted perimeter. It returns
+the calculated hydraulic radius.
+- `plot(self)`: This method generates a plot of the hydraulic channel using the
+data in the DataFrame `df`. It returns the generated plot.
+"""
+
+from typing import List
+
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
 
-class compute_area:
+class ComputeArea:
     """
     compute_area é uma classe utilizada no cálculo da seção transversal de canais hidráulicos.
     """
 
-    def __init__(self, df):
+    def __init__(self, df: pd.DataFrame):
         self.df = df
 
-    def area(self):
-        A = []
-        for i in list(range(len(self.df.depth))):
-            if i == 0 or i == 1 or i == len(self.df.depth) - 1:
-                A.append(0)
+    def get_area(self) -> List[float]:
+        """
+        This method calculates the cross-sectional area of the
+        hydraulic channel at each point in the DataFrame `df`.
+        It returns a list of the calculated areas.
+
+        Parameters
+        ----------
+        self : ComputeArea
+            The ComputeArea object.
+
+        Returns
+        -------
+        List[float]
+            A list of the calculated cross-sectional areas.
+        """
+        area = []
+        for index, depth in enumerate(self.df.depth):
+            if index in (0, 1, len(self.df.depth) - 1):
+                area.append(0)
             else:
-                A.append(
+                area.append(
                     round(
-                        (self.df.dist_left_bank[i] - self.df.dist_left_bank[i - 1])
+                        (
+                            self.df.dist_left_bank[index]
+                            - self.df.dist_left_bank[index - 1]
+                        )
                         * 0.5
-                        * (self.df.depth[i - 1] + self.df.depth[i]),
+                        * (self.df.depth[index - 1] + depth),
                         3,
                     )
                 )
 
-        return A
+        return area
 
-    def pm(self):
-        Pm = []
-        for i in list(range(len(self.df.depth))):
-            if i == 0 or i == 1 or i == len(self.df.depth) - 1:
-                Pm.append(0)
-            elif i == 2:
-                Pm.append(
-                    round(
-                        self.df.depth[i - 1]
-                        + np.sqrt(
-                            (self.df.depth[i - 1] - self.df.depth[i]) ** 2
-                            + (
-                                self.df.dist_left_bank[i]
-                                - self.df.dist_left_bank[i - 1]
-                            )
-                            ** 2
-                        ),
-                        3,
-                    )
-                )
-            elif i == len(self.df.depth) - 2:
-                Pm.append(
-                    round(
-                        self.df.depth[i]
-                        + np.sqrt(
-                            (self.df.depth[i - 1] - self.df.depth[i]) ** 2
-                            + (
-                                self.df.dist_left_bank[i]
-                                - self.df.dist_left_bank[i - 1]
-                            )
-                            ** 2
-                        ),
-                        3,
-                    )
-                )
+    def get_wetted_perimeter(self) -> List[float]:
+        """
+        This method calculates the wetted perimeter of the
+        hydraulic channel at each point in the DataFrame `df`.
+        It returns a list of the calculated wetted perimeters.
+
+        Parameters
+        ----------
+        self : ComputeArea
+            The ComputeArea object.
+
+        Returns
+        -------
+        List[float]
+            A list of the calculated wetted perimeters.
+        """
+        wetted_perimeter = []
+        for i, (depth, dist_left_bank) in enumerate(
+            zip(self.df.depth, self.df.dist_left_bank)
+        ):
+            if i == 0 or i == len(self.df.depth) - 1:
+                wetted_perimeter.append(0)
             else:
-                Pm.append(
-                    round(
-                        np.sqrt(
-                            (self.df.depth[i - 1] - self.df.depth[i]) ** 2
-                            + (
-                                self.df.dist_left_bank[i]
-                                - self.df.dist_left_bank[i - 1]
-                            )
-                            ** 2
-                        ),
-                        3,
-                    )
-                )
-        return Pm
+                dx = dist_left_bank - self.df.dist_left_bank[i - 1]
+                dy = depth - self.df.depth[i - 1]
+                wetted_perimeter.append(round(np.sqrt(dx**2 + dy**2), 3))
+        return wetted_perimeter
 
-    def Rh(self):
-        return sum(self.area()) / sum(self.pm())
+    def get_hydraulic_radius(self) -> float:
+        """
+        This method calculates the hydraulic radius of the channel by
+        dividing the total cross-sectional area by the total wetted perimeter.
+        It returns the calculated hydraulic radius.
 
-    def plot(self):
+        Parameters
+        ----------
+        self : ComputeArea
+            The ComputeArea object.
+
+        Returns
+        -------
+        float
+            The calculated hydraulic radius.
+        """
+        return sum(self.get_area()) / sum(self.get_wetted_perimeter())
+
+    def plot_profile(self) -> None:
+        """Plots the depth profile of the river cross-section."""
         fig = plt.figure()
         ax = fig.add_subplot(111)
         ax.plot(self.df.dist_left_bank, self.df.depth, color="black")
