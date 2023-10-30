@@ -11,7 +11,7 @@ python = "^3.10, <3.12"
 gekko = "^1.0.6"
 numpy = "^1.26.0"
 opencv-python = "^4.8.0.76"
-openpiv = "0.23.6"
+openpiv = "0.25.1"
 pandas = "^2.1.0"
 matplotlib = "^3.8.0"
 
