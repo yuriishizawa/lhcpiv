@@ -35,7 +35,7 @@ def calculate(
 
     now = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
 
-    create_folder(preffix_path + "transformed/")
+    create_folder(f"{preffix_path}transformed/")
 
     frame_a = tools.imread(preffix_path + path_frame_a)
     frame_b = tools.imread(preffix_path + path_frame_b)
@@ -45,11 +45,11 @@ def calculate(
         frame_b, _ = preprocess.dynamic_masking(frame_b, **masking_params)
 
     frame_a = cv2.warpPerspective(frame_a, M, roi)
-    cv2.imwrite(preffix_path + "transformed/" + path_frame_a, frame_a)
+    cv2.imwrite(f"{preffix_path}transformed/{path_frame_a}", frame_a)
     frame_b = cv2.warpPerspective(frame_b, M, roi)
-    cv2.imwrite(preffix_path + "transformed/" + path_frame_b, frame_b)
+    cv2.imwrite(f"{preffix_path}transformed/{path_frame_b}", frame_b)
 
-    create_folder(preffix_path + "piv_results")
+    create_folder(f"{preffix_path}piv_results")
 
     u0, v0, sig2noise = pyprocess.extended_search_area_piv(
         frame_a.astype(np.int32),
@@ -79,7 +79,7 @@ def calculate(
         create_folder(output_path)
 
     else:
-        output_path = preffix_path + "/" + "piv_results"
+        output_path = f"{preffix_path}/piv_results"
 
     output_path = os.path.join(output_path, f"{now}.txt")
     tools.save(x, y, u3, v3, mask, output_path)
@@ -96,7 +96,7 @@ def calculate(
             scale=arrow_length,
             width=arrow_width,
             on_img=True,
-            image_name=preffix_path + "transformed/" + path_frame_a,
+            image_name=f"{preffix_path}transformed/{path_frame_a}",
         )
 
         if save_fig:
