@@ -14,7 +14,7 @@ parsed.add_argument("--output_path", type=str)
 original_path = parsed.parse_args().videos_path
 output_path = parsed.parse_args().output_path
 
-original_path = os.getcwd() + "/" + original_path
+original_path = f"{os.getcwd()}/{original_path}"
 
 directories_list = [
     directories
@@ -59,7 +59,7 @@ for directory in directories_list:
             # displaying the coordinates
             # on the image window
             font = cv2.FONT_HERSHEY_SIMPLEX
-            cv2.putText(img, str(x) + "," + str(y), (x, y), font, 1, (255, 0, 0), 2)
+            cv2.putText(img, f"{str(x)},{str(y)}", (x, y), font, 1, (255, 0, 0), 2)
             cv2.imshow(directory, img)
 
         # checking for right mouse clicks
@@ -76,7 +76,7 @@ for directory in directories_list:
             r = img[y, x, 2]
             cv2.putText(
                 img,
-                str(b) + "," + str(g) + "," + str(r),
+                f"{str(b)},{str(g)},{str(r)}",
                 (x, y),
                 font,
                 1,
