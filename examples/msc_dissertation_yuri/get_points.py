@@ -4,7 +4,7 @@ import os
 import cv2
 
 """
-function to display the coordinates of 
+function to display the coordinates of
 of the points clicked on the image
 """
 
