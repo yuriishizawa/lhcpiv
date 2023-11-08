@@ -1,6 +1,6 @@
 install:
 	poetry install
-	
+
 reinstall-poetry:
 	rm -rf poetry.lock
 	rm -rf .venv
