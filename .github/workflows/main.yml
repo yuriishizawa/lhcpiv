@@ -22,7 +22,7 @@ jobs:
       with:
         python-version: 3.11
     - name: Instala o poetry
-      uses: Gr1N/setup-poetry@v8
+      uses: Gr1N/setup-poetry@v9
       with:
         poetry-version: "1.5.1"
     - name: Install dependencies
