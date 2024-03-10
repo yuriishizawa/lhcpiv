@@ -21,7 +21,7 @@ def calculate(dists):
     dac = m.Const(dists[4], "dac")
     dbd = m.Const(dists[5], "dbd")
     # xb, yb, xc, yc, xd, yd = [m.Var(value=0) for i in range(6)]
-    xb, xc, yc, xd, yd = [m.Var(value=0) for _ in range(5)]
+    xb, xc, yc, xd, yd = (m.Var(value=0) for _ in range(5))
     m.Equations(
         [
             # xb ** 2 + yb ** 2 == dab ** 2,

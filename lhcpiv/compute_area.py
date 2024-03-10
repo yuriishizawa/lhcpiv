@@ -19,7 +19,6 @@ the calculated hydraulic radius.
 data in the DataFrame `df`. It returns the generated plot.
 """
 
-from typing import List
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -34,7 +33,7 @@ class ComputeArea:
     def __init__(self, df: pd.DataFrame):
         self.df = df
 
-    def get_area(self) -> List[float]:
+    def get_area(self) -> list[float]:
         """
         This method calculates the cross-sectional area of the
         hydraulic channel at each point in the DataFrame `df`.
@@ -69,7 +68,7 @@ class ComputeArea:
 
         return area
 
-    def get_wetted_perimeter(self) -> List[float]:
+    def get_wetted_perimeter(self) -> list[float]:
         """
         This method calculates the wetted perimeter of the
         hydraulic channel at each point in the DataFrame `df`.
