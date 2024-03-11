@@ -18,3 +18,11 @@ repos:
       # Run the formatter.
       - id: ruff-format
         types_or: [python, pyi, jupyter]
+  - repo: https://github.com/sourcery-ai/sourcery
+    rev: v1.13.0
+    hooks:
+    - id: sourcery
+      # The best way to use Sourcery in a pre-commit hook:
+      # * review only changed lines:
+      # * omit the summary
+      args: [--diff=git diff HEAD, --no-summary]
