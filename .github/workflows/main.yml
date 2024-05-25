@@ -26,4 +26,4 @@ jobs:
         python3 -m pip install -r requirements-dev.lock
     - name: Test with Pytest
       run: |
-        python3 run pytest -vv lhcpiv/DLT_2D.py
+        python3 -m pytest -vv lhcpiv/DLT_2D.py
