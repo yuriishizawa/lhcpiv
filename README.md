@@ -3,6 +3,8 @@
 # LHCPIV
 
 # Install dependencies
-We strongly recommend to use [Poetry](https://python-poetry.org):
+We strongly recommend to use [Rye](https://rye.astral.sh/):
 
-    poetry install
+```bash
+rye sync
+```

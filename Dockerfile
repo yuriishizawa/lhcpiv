@@ -1,4 +1,4 @@
-FROM python:3.11
+FROM python:slim
 
 ENV PYTHONFAULTHANDLER=1 \
   PYTHONUNBUFFERED=1 \
@@ -8,9 +8,6 @@ ENV PYTHONFAULTHANDLER=1 \
   PIP_DEFAULT_TIMEOUT=100 \
   POETRY_VERSION=1.5.0
 
-# Instalação do poetry versão 1.5.0
-RUN pip3 install "poetry==$POETRY_VERSION"
-
 RUN mkdir /home/lhcpiv
 WORKDIR /home/lhcpiv/
 
@@ -18,6 +15,6 @@ COPY . .
 
 RUN apt-get update
 RUN apt-get install htop ffmpeg libsm6 libxext6 libgl1-mesa-glx python3-opencv -y
-RUN poetry install
+RUN PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -r requirements.lock
 
 CMD ["jupyter", "lab", "--port", "8888", "--ip", "0.0.0.0", "--allow-root", "--no-browser"]
