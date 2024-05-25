@@ -3,6 +3,7 @@
 # LHCPIV
 
 # Install dependencies
+
 We strongly recommend to use [Rye](https://rye.astral.sh/):
 
 ```bash
