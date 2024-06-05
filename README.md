@@ -1,4 +1,4 @@
-[![Python application](https://github.com/yuriishizawa/lhcpiv/actions/workflows/main.yml/badge.svg)](https://github.com/yuriishizawa/lhcpiv/actions/workflows/main.yml)
+[![Python application](https://github.com/yuriishizawa/lhcpiv/actions/workflows/main.yml/badge.svg)](https://github.com/yuriishizawa/lhcpiv/actions/workflows/main.yml) [![CodeFactor](https://www.codefactor.io/repository/github/yuriishizawa/lhcpiv/badge)](https://www.codefactor.io/repository/github/yuriishizawa/lhcpiv)
 
 # LHCPIV
 
